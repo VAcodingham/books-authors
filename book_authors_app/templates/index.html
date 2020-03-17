@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books/Authors with Templates</title>
+<style>
+body{
+    background-color: darkgray;
+}
+form{
+    margin-left: 400px;
+    border: 2px solid black;
+    margin-right: 600px;
+}
+form h1{
+    text-align: center;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+        
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+        
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+</style>
+</head>
+<body>
+    <form action="/addabook" method="post">
+        <h1>ADD A BOOK</h1>
+        <p>Title: <input type="text" name="title" id=""></p><br>
+        {% csrf_token %}
+        <p>Description: <textarea name="description" id="" cols="30" rows="10"></textarea></p><br>
+        <input type="submit" value="Add">
+    </form><br><br><br>
+    <a href="/authors">Click Here To See Our Directory Of Authors</a><br><br><br>
+    <table>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Action</th>
+        </tr>
+        {% for x in allbooks %}
+        <tr>
+            <td>
+                {{x.id}}
+            </td>
+            <td>
+                {{x.title}}
+            </td>
+            <td>
+                <a href="books/{{x.id}}">view</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>    
+</body>
+</html>
+
+
+
+
+    
